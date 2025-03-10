@@ -29,6 +29,7 @@ def process_likes(browser: MyBrowser):
     try:
         n_events = browser.waiter.until(EC.presence_of_element_located((By.ID, 'profile-notifications-badge'))).text
     except NoSuchElementException:
+        print('не прогрузилось во время скроллинга')
         logger.warning('Нет лайков, или количество не прогрузилось')
         n_events = '0'
 
@@ -56,6 +57,7 @@ def process_likes(browser: MyBrowser):
             val['likes_list'].append(like)
             stat.set_stat(like)        # статистика
         else:
+            print('мой лайкнутый коммент')
             like.mark_read()    # если не подходит для обработки - помечаем прочитанным
     stat.dump_data()
     return likes_data

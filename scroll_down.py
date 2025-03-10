@@ -2,6 +2,7 @@ import logging
 from time import sleep
 from class_browser import MyBrowser
 import random
+import time
 
 
 def scroll_down(browser: MyBrowser, n: str, logger: logging.Logger):
@@ -11,7 +12,9 @@ def scroll_down(browser: MyBrowser, n: str, logger: logging.Logger):
     """
     try:
         n = int('0' + n)
+        time.sleep(6)
     except ValueError:
+        print('we have scroll down error')
         n = 1000
     scrolls = max(3, (n // 18))
     for i in range(scrolls):

@@ -1,5 +1,5 @@
 from class_logger import get_logger
-
+import time
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 
@@ -19,6 +19,7 @@ class Solution:
     def like(self):
         try:
             self.like_btn.click()
+            time.sleep(5)
         except Exception as e:
             logger.error(e)
             logger.error(str(self))

@@ -1,5 +1,6 @@
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
+import time
 
 from class_logger import get_logger
 
@@ -29,6 +30,7 @@ class Like:
         if not self.is_comment:
             try:
                 self.__mark_read_btn.click()
+                time.sleep(5)
             except Exception as e:
                 logger.error("Like mark read failed")
                 logger.error(str(self))
