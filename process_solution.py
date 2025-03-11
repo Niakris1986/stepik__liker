@@ -31,13 +31,18 @@ def process_solution(browser: MyBrowser, solution_url: str, ids_list: list[str]|
     likes_list = likes_list or []
     STEPIK_SELF_ID = browser.STEPIK_SELF_ID
     friends_data = browser.friends_data
+    cnt = 0
 
     browser.execute_script(f'window.open("{solution_url}", "_blank1");')     # open url in new tab
     browser.switch_to.window(browser.window_handles[-1])                     # switch to new tab
     try:
+        sleep(3)
         _ = browser.waiter.until(EC.presence_of_element_located((By.CLASS_NAME, "tab__item-counter")))
     except TimeoutException:
+        sleep(5)
         _ = browser.waiter.until(EC.presence_of_element_located((By.CLASS_NAME, "tab__item-counter")))
+        cnt += 1
+        print('this link failed')
     sleep(random.uniform(20, 30))
 
     comments_sols = browser.find_elements(By.CLASS_NAME, "tab__item-counter")
@@ -79,7 +84,7 @@ def process_solution(browser: MyBrowser, solution_url: str, ids_list: list[str]|
         browser.execute_script("arguments[0].scrollIntoView(true);", like.like)
         like.mark_read()
         logger.debug(f'{repr(like)} was marked')
-
+    print(f'failed links {cnt}')
     return liked, already_liked, len(raw_solutions)
 
 
