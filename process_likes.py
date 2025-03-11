@@ -24,7 +24,7 @@ def process_likes(browser: MyBrowser):
     notifications_url = 'https://stepik.org/notifications?type=comments'
     browser.get(notifications_url)
     browser.waiter.until(EC.presence_of_element_located((By.CLASS_NAME, 'navbar__profile-toggler')))
-    sleep(2)
+    sleep(5)
     # получаем количество событий
     try:
         n_events = browser.waiter.until(EC.presence_of_element_located((By.ID, 'profile-notifications-badge'))).text

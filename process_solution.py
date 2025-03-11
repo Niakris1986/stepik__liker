@@ -38,7 +38,7 @@ def process_solution(browser: MyBrowser, solution_url: str, ids_list: list[str]|
         _ = browser.waiter.until(EC.presence_of_element_located((By.CLASS_NAME, "tab__item-counter")))
     except TimeoutException:
         _ = browser.waiter.until(EC.presence_of_element_located((By.CLASS_NAME, "tab__item-counter")))
-    sleep(random.uniform(6, 9))
+    sleep(random.uniform(20, 30))
 
     comments_sols = browser.find_elements(By.CLASS_NAME, "tab__item-counter")
     n_sols = '0'

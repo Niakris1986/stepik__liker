@@ -18,6 +18,7 @@ class Solution:
 
     def like(self):
         try:
+            time.sleep(3)
             self.like_btn.click()
             time.sleep(5)
         except Exception as e:
